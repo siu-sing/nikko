@@ -1,2 +1,6 @@
 ./msg_templates
 msg_templates
+.env
+crontab
+config.py
+*.session
