@@ -6,6 +6,11 @@ import random
 import json
 import config as cfg
 from datetime import datetime
+import sys
+
+if (len(sys.argv)<2):
+  print("Usage: python nikko.py <freq>")
+  sys.exit()  
 
 def send_message(job_name, api_id, api_hash, msg_file, recipients):
     
@@ -27,8 +32,9 @@ def send_message(job_name, api_id, api_hash, msg_file, recipients):
         print(f"{datetime.now()} : INFO: Message sent from {username} to {r} with {msg_file}")
 
     client.disconnect()
-    
-for j in cfg.jobs:
-    send_message(j["job_name"], j["api_id"], j["api_hash"],j["msg_file"], j["recipients"])
+
+freq = sys.argv[1]
+for j in cfg.jobs[freq]:
+    send_message(j["job_name"], j["api_id"], j["api_hash"], j["msg_file"], j["recipients"])
     
 
